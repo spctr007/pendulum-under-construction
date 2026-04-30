@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pendulum Automation — Coming Soon</title>
+<meta name="description" content="Reliable RPA for booking and finance operations. Something precise is being built.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        oklch(11% 0.018 263);
+  --surface:   oklch(16% 0.020 263);
+  --border:    oklch(23% 0.018 263);
+  --ink:       oklch(93% 0.009 80);
+  --ink-dim:   oklch(58% 0.014 263);
+  --ink-mute:  oklch(34% 0.016 263);
+  --amber:     oklch(72% 0.160 65);
+  --amber-mid: oklch(64% 0.148 65);
+  --amber-hi:  oklch(83% 0.140 65);
+
+  /* SVG-specific tokens */
+  --svg-bar:       oklch(23% 0.018 263);
+  --svg-pivot:     oklch(30% 0.016 263);
+  --svg-arm:       oklch(38% 0.014 263);
+  --svg-highlight: oklch(85% 0.130 65);
+
+  --ff-display: 'Cormorant', Georgia, serif;
+  --ff-body:    'DM Sans', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:        oklch(97% 0.005 80);
+    --surface:   oklch(93% 0.008 80);
+    --border:    oklch(84% 0.010 263);
+    --ink:       oklch(18% 0.018 263);
+    --ink-dim:   oklch(42% 0.014 263);
+    --ink-mute:  oklch(60% 0.016 263);
+    --amber:     oklch(60% 0.160 65);
+    --amber-mid: oklch(54% 0.148 65);
+    --amber-hi:  oklch(72% 0.140 65);
+
+    --svg-bar:       oklch(72% 0.010 263);
+    --svg-pivot:     oklch(60% 0.016 263);
+    --svg-arm:       oklch(52% 0.014 263);
+    --svg-highlight: oklch(85% 0.130 65);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  padding: 3rem 2rem;
+}
+
+/* ── MAIN ── */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+
+/* ── PENDULUM ── */
+.pendulum-wrap {
+  margin-bottom: 3.5rem;
+}
+
+.pendulum-arm {
+  transform-origin: 32px 6px;
+  animation: swing 2.6s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+}
+
+@keyframes swing {
+  from { transform: rotate(-26deg); }
+  to   { transform: rotate(26deg);  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pendulum-arm {
+    animation: none;
+    transform: rotate(0deg);
+  }
+}
+
+/* ── EYEBROW ── */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 1.5rem;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: pulse 2.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot { animation: none; }
+}
+
+/* ── HEADING ── */
+h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+h1 span {
+  color: var(--amber);
+  font-style: italic;
+}
+
+/* ── DESCRIPTION ── */
+.desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-dim);
+  max-width: 46ch;
+  margin-bottom: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  padding-top: 1.5rem;
+  letter-spacing: 0.01em;
+}
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- Pendulum -->
+  <div class="pendulum-wrap" aria-hidden="true">
+    <svg width="64" height="108" viewBox="0 0 64 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="3" x2="64" y2="3" stroke="var(--svg-bar)" stroke-width="1.5"/>
+      <circle cx="32" cy="6" r="3.5" fill="var(--svg-pivot)"/>
+      <g class="pendulum-arm">
+        <line x1="32" y1="6" x2="32" y2="82" stroke="var(--svg-arm)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="32" cy="94" r="13" fill="var(--amber)" opacity="0.92"/>
+        <circle cx="29" cy="90" r="4" fill="var(--svg-highlight)" opacity="0.35"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="status">
+    <span class="status-dot" aria-hidden="true"></span>
+    Under construction
+  </p>
+
+  <h1>Something <span>precise</span><br>is being built.</h1>
+
+  <p class="desc">
+    Pendulum Automation delivers production-grade RPA for booking
+    and finance operations. Fixed build fee. Monthly retainer.
+    Owned outcomes and an SLA to back them.
+  </p>
+
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Pendulum Automation</p>
+</footer>
+
+</body>
+</html>
