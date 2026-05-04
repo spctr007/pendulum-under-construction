@@ -1,0 +1,5 @@
+name = "pendulum-under-construction"
+compatibility_date = "2025-05-04"
+
+[assets]
+directory = "./"
