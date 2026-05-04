@@ -1,5 +1,5 @@
 *.png
-!favicon-32x32.png
-!apple-touch-icon.png
 resources/*
 !resources/.gitkeep
+!resources/favicon-32x32.png
+!resources/apple-touch-icon.png
